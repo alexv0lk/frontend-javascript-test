@@ -2,7 +2,7 @@
   "name": "frontend-javascript-test",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://alexv0lk.github.io/frontend-javascript-test",
+  "homepage": "http://alexv0lk.github.io/frontend-javascript-test",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
