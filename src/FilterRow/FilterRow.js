@@ -19,15 +19,15 @@ class FilterRow extends React.Component{
 
     handleSubmit = (event) => {
         event.preventDefault();
-        this.props.filterItem(this.state.str);
-        this.props.sortItem(null);
+        this.props.filterItem( this.state.str );
+        this.props.sortItem( null );
       }
 
     render(){
         return(
-            <form onSubmit={this.handleSubmit}>
-                <input type="text" onChange={this.handleChange}></input>
-                <input type="submit" value="Найти"></input>
+            <form onSubmit = { this.handleSubmit }>
+                <input type = "text" onChange = { this.handleChange }></input>
+                <input type = "submit" value = "Найти"></input>
             </form>
         )
     }
