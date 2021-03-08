@@ -62,12 +62,24 @@ class App extends React.Component {
         return reg.test( obj['phone'] );
       });
       concatItems = filterID.concat( filterFN , filterLN , filterEM , filterPH );
+
+      // ниже убираю повторяющиеся элементы после фильтрации и concat
       
       filtredItems = concatItems.filter( ( item , index ) => {
         return concatItems.indexOf( item ) === index;
       });
       
     }
+
+    // Проверяю активную страницу, и если она больше длинны отфильтрованного массива, 
+    // то устанавливаю максимальную страницу
+
+    if ( Math.ceil( filtredItems.length / this.state.maxRow ) <= this.state.page ) {
+      this.setState(() => {
+        return { page: Math.floor( filtredItems.length / this.state.maxRow ) }
+      })
+    }
+
     if ( this.state.choiseData !== null ){
       this.setState(() => {
         return { items: filtredItems }
@@ -283,6 +295,16 @@ class App extends React.Component {
         return {items: [item, ...this.state.items]}
     })
     
+    if ( this.state.choiseData === 'min' ){
+      this.setState(() => {
+        return {minData: [item, ...this.state.minData]}
+      })
+    } else if ( this.state.choiseData === 'big' ){
+      this.setState(() => {
+        return {bigData: [item, ...this.state.bigData]}
+      })
+    }
+    
   }
 
   setActiveRow = item =>{
@@ -296,22 +318,13 @@ class App extends React.Component {
       // логика переключения страниц и 
       // установки максимального и минимального кол-ва страниц зависимое от количества рядов
       if ( dir ) {
-        if ( this.state.page < Math.ceil( this.state.items.length / this.state.maxRow ) - 1 ){
-          return {
-            page: this.state.page + 1
-          }
-        } else { 
-          return { page: this.state.page }
-        }
+        return this.state.page < Math.ceil( this.state.items.length / this.state.maxRow ) - 1 ? 
+          { page: this.state.page + 1 } : { page: this.state.page }
+           
       } else {
-        if(this.state.page >0){
-          return {
-            page: this.state.page - 1
-          }
-        } else {
-          return { page: this.state.page }
-        }
-        
+        return this.state.page > 0 ? 
+          { page: this.state.page - 1 } : { page: this.state.page }
+
       }
     })
   }
@@ -389,6 +402,8 @@ class App extends React.Component {
             <NextPrev 
               changePage = { this.changePage }
               page = { this.state.page }
+              items = { this.state.items }
+              maxRow = { this.state.maxRow }
             />
             <div className = "top-bar">
               <FilterRow

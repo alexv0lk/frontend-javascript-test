@@ -38,6 +38,7 @@ class Table extends React.Component{
                     error = { this.props.error } 
                     maxRow = { this.props.maxRow }
                     setActiveRow = { this.props.setActiveRow }
+                    page = { this.props.page }
                 />
               </tbody>
             </table>
