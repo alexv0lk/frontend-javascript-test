@@ -3,6 +3,7 @@
 # Приложение было сделано с помощью create-react-app
 
 ссылка на gh-pages (https://alexv0lk.github.io/frontend-javascript-test)
+активировать тестовый json - https://cors-anywhere.herokuapp.com/corsdemo
 
 __Функционал__
 
